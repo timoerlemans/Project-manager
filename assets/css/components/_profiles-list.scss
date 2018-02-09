@@ -1,0 +1,27 @@
+.profiles__list {
+    border-radius: 6px;
+}
+.profiles-list__item {
+    border: 1px solid #fff;
+    border-bottom-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include media ('<phone') {
+        flex-direction: column;
+        padding: 10px;
+    }
+    @include media('>=phone') {
+        padding: 20px;
+    }
+
+    &:last-of-type {
+        border-bottom-width: 1px;
+    }
+}
+.profiles-list__link {
+    @include media('<phone') {
+        margin-bottom: 15px;
+    }
+}

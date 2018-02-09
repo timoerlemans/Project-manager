@@ -1,0 +1,8 @@
+.container {
+    max-width: $max-width;
+    margin: 0 auto;
+
+    @include media('<desktop') {
+        padding: 0 15px;
+    }
+}

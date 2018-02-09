@@ -1,0 +1,5 @@
+{
+    "groups": {
+        "build": ["assets/js/events.js"]
+    }
+}

@@ -1,0 +1,14 @@
+/*
+* Using sindresorhus' modern-normalize instead of necolas' normalize
+* because older browser version support is not needed right now
+* and `box-sizing: border-box` is pretty common practice nowadays
+*/
+
+@import 'settings/breakpoints';
+@import 'settings/variables';
+@import 'tools/include-media';
+@import 'tools/font-face';
+@import 'generic/normalize';
+@import 'elements/default';
+@import 'objects/wrapper';
+@import 'components/profiles-list';
