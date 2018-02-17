@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
+    browserify = require('gulp-browserify'),
     rev = require('gulp-rev'),
     del = require('del'),
     fs = require('fs'),
@@ -69,7 +70,7 @@ gulp.task(
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(JsFolder + '/build'))
             .pipe(handleSuccess('jsconcat', 'JS concatenation succeeded'));
-    }),
+    })
 );
 
 gulp.task('js', ['jsconcat'], function() {
@@ -91,7 +92,7 @@ gulp.task('watch', function() {
             '!' + JsFolder + '/build/**/*',
             '!' + JsFolder + '/tasks/**/*.js',
         ],
-        ['js'],
+        ['js']
     );
 });
 

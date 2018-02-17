@@ -1,0 +1,17 @@
+.profiles__view-switch {
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.view-switch__icon {
+    float: right;
+    margin-left: 10px;
+
+    svg {
+        display: block;
+        width: 32px;
+        height: 32px;
+        fill: #fff;
+    }
+}

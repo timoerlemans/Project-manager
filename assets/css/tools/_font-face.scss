@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,600,600i,700,700i');
 
-@mixin ff($fontface: 'Open Sans', $fontweight: 400) {
+@mixin ff($fontface: 'Roboto', $fontweight: 400) {
     font-family: $fontface, Helvetica, sans-serif;
     font-weight: $fontweight;
 }

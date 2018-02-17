@@ -1,0 +1,48 @@
+.profile {
+    @include media('>=tablet') {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+.profile__remove-wrapper {
+    @include media ('<tablet') {
+        overflow: hidden;
+    }
+}
+
+.profile__remove-btn {
+    float: right;
+}
+
+.profile__image,
+.profile__info {
+    width: 100%;
+
+    @include media('>=tablet') {
+        margin-right: 15px;
+        margin-left: 15px;
+        float: left;
+        width: calc(50% - 30px);
+    }
+}
+
+.profile__image {
+    @include media('<tablet') {
+        margin-bottom: 25px;
+    }
+}
+
+.profile__img {
+    display: block;
+    margin: 0 auto;
+}
+
+.profile__attr-title {
+    font-weight: 600;
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.profile__attr {
+    margin-top: 0.5em;
+}

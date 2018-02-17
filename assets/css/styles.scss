@@ -10,5 +10,10 @@
 @import 'tools/font-face';
 @import 'generic/normalize';
 @import 'elements/default';
+@import 'objects/loader';
 @import 'objects/wrapper';
+@import 'objects/view-switch';
 @import 'components/profiles-list';
+@import 'components/profile';
+@import 'components/modal';
+@import 'utilities/helpers';

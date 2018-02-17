@@ -38,10 +38,34 @@ button,
     color: #fff;
     background: none;
     box-shadow: none;
+    cursor: pointer;
 
     &:hover,
     &:focus {
         background: #fff;
         color: $black;
+    }
+
+    + button,
+    + [type='button'] {
+        margin-left: 15px;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+form {
+    input,
+    label {
+        clear: both;
+        display: block;
+    }
+
+    input {
+        margin-bottom: 1.5em;
     }
 }
