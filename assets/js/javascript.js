@@ -99,7 +99,9 @@ function _init() {
             li.innerHTML =
                 '<a href="/profile.html?id=' +
                 data[item].id +
-                '" class="profiles-list__preview"><img class="profiles-list__img" src="' +
+                '" class="profiles-list__preview"><img class="profiles-list__img" alt="Een foto van ' +
+                data[item].name +
+                '" src="' +
                 data[item].picture +
                 '"><div class="profiles-list__info"><span class="profiles-list__name">' +
                 data[item].name +
@@ -124,6 +126,9 @@ function _init() {
                 document
                     .querySelector('.js-profile-img')
                     .setAttribute('src', data[item].picture);
+                document
+                    .querySelector('.js-profile-img')
+                    .setAttribute('alt', 'Een foto van ' + data[item].name);
                 document.querySelector('.js-profile-name').innerHTML =
                     data[item].name;
                 document.querySelector('.js-profile-birthday').innerHTML =

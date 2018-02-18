@@ -1,5 +1,5 @@
 {
     "groups": {
-        "build": ["assets/js/events.js"]
+        "build": ["assets/js/javascript.js"]
     }
 }
