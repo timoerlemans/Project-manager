@@ -1,2 +1,8 @@
 $max-width: map-get($breakpoints, desktop) - 30;
 $black: #333;
+$headings: #49c5b6;
+$gradient: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(237, 237, 237, 1) 100%
+);

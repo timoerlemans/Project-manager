@@ -29,9 +29,14 @@
     }
 
     button {
-        background: $black;
-        color: #fff;
-        border-color: $black;
+        background: #fff;
+        color: $headings;
+        border-color: #fff;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
     }
 
     a {
@@ -39,15 +44,32 @@
     }
 }
 
-.modal-wrapper {
+.modal__wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate3D(-50%, -50%, 1px);
-    background-color: #fff;
-    color: $black;
+    background-color: $headings;
+    color: #fff;
     padding: 20px;
     width: $max-width/2;
     max-width: 100%;
-    border-radius: 6px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 1px 100px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modal__close-btn {
+    font-size: 3em;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.25s;
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+        transform: rotate(360deg);
+    }
 }

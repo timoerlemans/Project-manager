@@ -4,6 +4,16 @@
         margin-right: -15px;
     }
 }
+
+.profile__wrapper {
+    background: #fff;
+    border: 1px solid #eee;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    padding: 15px;
+}
+
 .profile__remove-wrapper {
     @include media ('<tablet') {
         overflow: hidden;

@@ -6,7 +6,7 @@ var jsondata = [],
     list,
     body = document.querySelector('body'),
     modal = document.querySelector('.modal'),
-    modalContent = document.querySelector('.modal-content'),
+    modalContent = document.querySelector('.modal__content'),
     modalCloseBtn = document.querySelector('.js-close-button'),
     urlParams = new URLSearchParams(window.location.search);
 
@@ -40,6 +40,7 @@ function _init() {
                     responseData.message !== undefined
                 ) {
                     showModal(true, responseData.message, true);
+                    loader();
                 } else {
                     var jsondata = responseData.data;
                     if (body.classList.contains('overview-page')) {
@@ -100,11 +101,11 @@ function _init() {
                 data[item].id +
                 '" class="profiles-list__preview"><img class="profiles-list__img" src="' +
                 data[item].picture +
-                '"><span class="profiles-list__name">' +
+                '"><div class="profiles-list__info"><span class="profiles-list__name">' +
                 data[item].name +
                 '</span><span class="profiles-list__email">' +
                 data[item].email +
-                '</span></a>';
+                '</span></div></a>';
         }
         loader(false);
     }
@@ -263,6 +264,6 @@ function _init() {
     }
 
     modalCloseBtn.addEventListener('click', function(e) {
-        modalShow(false);
+        showModal();
     });
 }

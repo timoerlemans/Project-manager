@@ -12,6 +12,13 @@
         display: block;
         width: 32px;
         height: 32px;
-        fill: #fff;
+        fill: $headings;
+    }
+
+    &:hover,
+    &:focus {
+        svg {
+            fill: lighten($headings, 10%);
+        }
     }
 }

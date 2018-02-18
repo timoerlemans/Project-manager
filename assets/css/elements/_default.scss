@@ -1,7 +1,7 @@
 body {
     @include ff();
-    background: $black;
-    color: #fff;
+    background: $gradient;
+    color: $black;
 }
 
 h1,
@@ -11,6 +11,7 @@ h4,
 h5,
 h6 {
     font-weight: 600;
+    color: $headings;
 }
 
 ul {
@@ -20,7 +21,7 @@ ul {
 }
 
 a {
-    color: #fff;
+    color: $black;
     display: inline-block;
 
     &:hover,
@@ -30,20 +31,23 @@ a {
 }
 
 button,
-[type='button'] {
+[type='button'],
+.button {
     appearance: none;
-    border: 1px solid #fff;
+    border: 1px solid $headings;
     border-radius: 3px;
     padding: 5px 10px;
     color: #fff;
     background: none;
     box-shadow: none;
     cursor: pointer;
+    text-decoration: none;
+    background: $headings;
 
     &:hover,
     &:focus {
-        background: #fff;
-        color: $black;
+        background: transparent;
+        color: $headings;
     }
 
     + button,
