@@ -59,7 +59,7 @@ function _init() {
                         } else {
                             showModal(
                                 true,
-                                '<p>Er is geen profielID gevonden, profiel kan niet weergegeven worden. <a href="/">Ga terug naar het overzicht</a>.</p>',
+                                '<p>Er is geen profielID gevonden, profiel kan niet weergegeven worden. <a href="./index.html">Ga terug naar het overzicht</a>.</p>',
                                 true
                             );
                             loader();
@@ -97,7 +97,7 @@ function _init() {
             li.classList.add('profiles-list__item');
             list.appendChild(li);
             li.innerHTML =
-                '<a href="/profile.html?id=' +
+                '<a href="./profile.html?id=' +
                 data[item].id +
                 '" class="profiles-list__preview"><img class="profiles-list__img" alt="Een foto van ' +
                 data[item].name +
