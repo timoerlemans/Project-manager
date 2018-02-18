@@ -13,17 +13,19 @@
 <body class="create-profile">
     <div class="container">
         <h1>Maak een nieuw profiel aan</h1>
-        <form class="create-profile__form">
+        <form class="create-profile__form js-create-profile">
             <label for="name">Naam:</label>
-            <input type="text" id="name" name="name" placeholder="Jan de Vries"> .
+            <input required="required" type="text" id="name" name="name" placeholder="Jan de Vries">
             <label for="birthday">Geboortedatum:</label>
-            <input type="date" id="birthday" name="birthday">
+            <input required="required" type="date" id="birthday" name="birthday">
             <label for="emailaddress">E-mailadres:</label>
-            <input type="email" id="emailaddress" name="emailaddress" placeholder="jandevries@gmail.com">
+            <input required="required" type="email" id="emailaddress" name="emailaddress" placeholder="jandevries@gmail.com">
             <label for="address">Adres:</label>
-            <input type="text" id="address" name="address" placeholder="Daendelsstraat 20, 5018ES Tilburg">
-            <label for="bio">(KOrte) biografie:</label>
-            <textarea type="text" id="bio" name="bio" placeholder="Jan de Vries"></textarea>
+            <input required="required" type="text" id="address" name="address" placeholder="Daendelsstraat 20, 5018ES Tilburg">
+            <label for="bio">(Korte) biografie:</label>
+            <textarea required="required" type="text" id="bio" name="bio" placeholder="Jan de Vries"></textarea>
+            <label for="picture">Afbeelding (URL):</label>
+            <input required="required" type="text" id="picture" name="picture" placeholder="https://i.imgur.com/ahRXaRS.jpg">
             <button type="submit">Opslaan</button>
         </form>
     </div>

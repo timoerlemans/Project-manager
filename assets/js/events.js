@@ -21,7 +21,7 @@ function _init() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 var responseData = JSON.parse(xhr.responseText);
-                if (responseData.status === 'fail' || responseData.status === 'error') {
+                if (responseData.status === 'fail' || responseData.status === 'error' || responseData.message !== undefined) {
                     showModal(true, responseData.message, true);
                 }
                 var jsondata = responseData.data;
@@ -48,6 +48,9 @@ function _init() {
         }
         if (action === 'remove' && !isNaN(parseInt(data))) {
             xhr.open('GET', xhrUrl + '?type=remove&id=' + data, true);
+        }
+        if (action === 'write') {
+            xhr.open('GET', xhrUrl + '?type=write&' + data, true);
         }
         xhr.send(null);
     }
@@ -161,6 +164,21 @@ function _init() {
             showModal(true, '<p>Weet je zeker dat je dit profiel wilt verwijderen?</p><button type="button" class="js-confirm-remove">Heel zeker</button><button type="button" class="js-cancel-remove">Niet zo zeker</button>');
             modalEvtLst();
         });
+    }
+
+    if (body.classList.contains('create-profile')) {
+        var createForm = document.querySelector('.js-create-profile');
+        createForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        loader(true);
+        var submitData = 'name=' + encodeURIComponent(document.querySelector('#name').value)
+        + '&birthday=' + encodeURIComponent(document.querySelector('#birthday').value)
+        + '&email=' + encodeURIComponent(document.querySelector('#emailaddress').value)
+        + '&address=' + encodeURIComponent(document.querySelector('#address').value)
+        + '&bio=' + encodeURIComponent(document.querySelector('#bio').value)
+        + '&picture=' + encodeURIComponent(document.querySelector('#picture').value);
+        xhr('write', submitData);
+    });
     }
 
     modalCloseBtn.addEventListener('click', function (e) {
