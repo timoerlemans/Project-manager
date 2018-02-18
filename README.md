@@ -1,4 +1,4 @@
-Dit project kan direct vanuit `file://` gedraait worden, maar draai je hem liever op een (node) webserver, gebruik dan dit commando:
+Dit project kan direct vanuit `file://` gedraaid worden, maar draai je hem liever op een (node) webserver, gebruik dan dit commando:
 
 ```
 node server.js 8080
