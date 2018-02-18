@@ -23,7 +23,6 @@
     }
 
     @include media ('<phone') {
-        flex-direction: column;
         padding: 10px;
     }
     @include media('>=phone') {
@@ -41,6 +40,10 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.25s;
+
+    @include media('<tablet') {
+        flex-direction: column;
+    }
 }
 
 .profiles-list__img {
@@ -60,8 +63,8 @@
 }
 
 .profiles-list__name {
-    @include media('<phone') {
-        margin-bottom: 15px;
+    @include media('<tablet') {
+        margin: 1.5em 0 0;
     }
 }
 
