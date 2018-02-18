@@ -10,11 +10,24 @@ var jsondata = [],
     modalCloseBtn = document.querySelector('.js-close-button'),
     urlParams = new URLSearchParams(window.location.search);
 
-// Check if document is ready
+// Check if document is ready and runs the _init function
 document.addEventListener('DOMContentLoaded', _init, false);
 
+/**
+ * The init functions contains all other functions and events, so that they are all available for eachother 
+ */
+
 function _init() {
-    // define functions
+    /**
+     * @function xhr
+     * Opens an XHR request to the backend.
+     * The backend runs on my personal website, which is defined in @var xhrUrl
+     * The backend code is available on https://github.com/timoerlemans/Project-manager_DB  
+     * It requires a webserver with PHP.
+     * 
+     * @param {String} action - can be either 'read', 'remove' or 'write'. When left empty, it will default to 'read'
+     * @param {any} data - the data that will be send to the backend
+     */
     function xhr(action, data) {
         var xhr = new XMLHttpRequest();
         var xhrUrl = 'http://www.timoerlemans.nl/xhr/xhr.php';
@@ -23,12 +36,15 @@ function _init() {
                 var responseData = JSON.parse(xhr.responseText);
                 if (responseData.status === 'fail' || responseData.status === 'error' || responseData.message !== undefined) {
                     showModal(true, responseData.message, true);
-                }
+                } else {
                 var jsondata = responseData.data;
                 if (body.classList.contains('overview-page')) {
                     fillProfileOverview(jsondata);
                 } else if (body.classList.contains('profile-page')) {
-                    // Using the relatively new urlSearchParams API to determine if the query string id is set (this doesn't work in IE)
+                    /** 
+                     * Using the relatively new urlSearchParams API to determine if the query string id is set (this doesn't work in IE)
+                     * @var urlParams = new URLSearchParams(window.location.search);
+                     */ 
                     if (urlParams.has('id')) {
                         fillProfilePage(
                             jsondata,
@@ -42,7 +58,9 @@ function _init() {
                     loader();
                 }
             }
+            }
         };
+
         if (!action || action === 'read') {
             xhr.open('GET', xhrUrl + '?type=read', true);
         }
@@ -55,28 +73,32 @@ function _init() {
         xhr.send(null);
     }
 
-    function fillProfileOverview(data) {
+/**
+ * @function fillProfileOverview
+ * 
+ * Is used to populate the profile overview page (index.html)
+ * 
+ * @param {Array} data - an array of objects
+ */
+function fillProfileOverview(data) {
         for (var item in data) {
             var li = document.createElement('li');
             li.setAttribute('id', data[item].id);
             li.classList.add('profiles-list__item');
-            var a = document.createElement('a');
-            a.classList.add('profiles-list__preview');
-            a.setAttribute('href', '/profile.html?id=' + data[item].id);
-            var span = document.createElement('span');
-            span.classList.add('profiles-list__name');
-            span.textContent = data[item].name;
-            var btn = document.createElement('button');
-            btn.classList.add('btn--remove');
-            btn.textContent = 'x';
             list.appendChild(li);
-            li.appendChild(a);
-            a.appendChild(span);
-            a.appendChild(btn);
+            li.innerHTML = '<a href="/profile.html?id=' + data[item].id + '" class="profiles-list__preview"><img class="profiles-list__img" src="' + data[item].picture + '"><span class="profiles-list__name">' + data[item].name + '</span><span class="profiles-list__email">' + data[item].email + '</span></a>';
         }
         loader(false);
     }
 
+/**
+ * @function fillProfilePage
+ * 
+ * Is used to populate the profile page (profile.html)
+ * 
+ * @param {Array} data - an array of objects
+ * @param {Int} id - The id of the profile 
+ */
     function fillProfilePage(data, id) {
         for (var item in data) {
             if (data[item].id === id) {
@@ -98,7 +120,14 @@ function _init() {
         }
     }
 
-    function loader(show) {
+/**
+ * @function loader
+ * 
+ * Used to show or hide the loader icon
+ * 
+ * @param {bool} show - true shows the loader, false hides it 
+ */
+function loader(show) {
         if (show) {
             document.querySelector('.loader').classList.remove('hidden');
         } else {
@@ -106,7 +135,16 @@ function _init() {
         }
     }
 
-    function showModal(show, content, hideclosebtn) {
+/**
+ * @function showModal
+ * 
+ * Function to show or hide, and populate the modal
+ * 
+ * @param {bool} show - Used to show or hide the modal 
+ * @param {string} content - Used to populate the content of the modal with (may contain HTML-code)
+ * @param {bool} hideclosebtn - If true, hides the modal close button so it can't be closed
+ */
+function showModal(show, content, hideclosebtn) {
         if (show) {
             modalContent.innerHTML = content;
             modal.classList.add('open');
@@ -123,7 +161,13 @@ function _init() {
         }
     }
 
-    function modalEvtLst() {
+/**
+ * @function modalEvtList
+ * 
+ * Adds event listeners when the modal is populated with buttons
+ * 
+ */
+function modalEvtLst() {
         var confirmBtn = document.querySelector('.js-confirm-remove');
         var cancelBtn = document.querySelector('.js-cancel-remove');
         confirmBtn.addEventListener('click', function (e) {
@@ -136,11 +180,26 @@ function _init() {
         });
     }
 
-    function createProfile(data) {
-        //
+/**
+ * @function createProfile
+ * 
+ * Used to send form data to the backend to create a new profile
+ * Is fired on submitting the form in create.html
+ *
+ */
+function createProfile() {
+        var submitData = 'name=' + encodeURIComponent(document.querySelector('#name').value)
+        + '&birthday=' + encodeURIComponent(document.querySelector('#birthday').value)
+        + '&email=' + encodeURIComponent(document.querySelector('#emailaddress').value)
+        + '&address=' + encodeURIComponent(document.querySelector('#address').value)
+        + '&bio=' + encodeURIComponent(document.querySelector('#bio').value)
+        + '&picture=' + encodeURIComponent(document.querySelector('#picture').value);
+        xhr('write', submitData);
     }
 
-    // define events
+    // End of function declarations
+
+    // Events and eventlisteners are defined herafter
 
     xhr();
 
@@ -171,13 +230,7 @@ function _init() {
         createForm.addEventListener('submit', function (e) {
         e.preventDefault();
         loader(true);
-        var submitData = 'name=' + encodeURIComponent(document.querySelector('#name').value)
-        + '&birthday=' + encodeURIComponent(document.querySelector('#birthday').value)
-        + '&email=' + encodeURIComponent(document.querySelector('#emailaddress').value)
-        + '&address=' + encodeURIComponent(document.querySelector('#address').value)
-        + '&bio=' + encodeURIComponent(document.querySelector('#bio').value)
-        + '&picture=' + encodeURIComponent(document.querySelector('#picture').value);
-        xhr('write', submitData);
+        createProfile();
     });
     }
 
